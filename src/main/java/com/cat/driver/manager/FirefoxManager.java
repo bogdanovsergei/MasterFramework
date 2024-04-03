@@ -1,4 +1,4 @@
-package com.cat.config.driver.manager;
+package com.cat.driver.manager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

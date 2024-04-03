@@ -6,5 +6,6 @@ public class WebBase {
 
     @BeforeMethod
     public void setUp() {
-
+        
     }
+}
