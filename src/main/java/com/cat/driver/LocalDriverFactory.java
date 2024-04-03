@@ -1,13 +1,10 @@
-package com.cat.config.driver;
+package com.cat.driver;
 
 import com.cat.config.ConfigFactory;
-import com.cat.config.driver.manager.ChromeManager;
-import com.cat.config.driver.manager.FirefoxManager;
+import com.cat.driver.manager.ChromeManager;
+import com.cat.driver.manager.FirefoxManager;
 import com.cat.enums.BrowserType;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public final class LocalDriverFactory {
     private LocalDriverFactory(){}
