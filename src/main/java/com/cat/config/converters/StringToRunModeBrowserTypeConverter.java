@@ -1,16 +1,14 @@
 package com.cat.config.converters;
 
-import com.cat.enums.BrowserType;
-import com.cat.enums.RunModeBrowserType;
+import com.cat.enums.RunModeType;
 import org.aeonbits.owner.Converter;
 
 import java.lang.reflect.Method;
-import java.util.Map;
 
-public class StringToRunModeBrowserTypeConverter implements Converter<RunModeBrowserType> {
+public class StringToRunModeBrowserTypeConverter implements Converter<RunModeType> {
 
     @Override
-    public RunModeBrowserType convert(Method method, String runMode) {
-        return RunModeBrowserType.valueOf(runMode.toUpperCase());
+    public RunModeType convert(Method method, String runMode) {
+        return RunModeType.valueOf(runMode.toUpperCase());
     }
 }
