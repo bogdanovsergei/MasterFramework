@@ -1,5 +1,7 @@
 package com.cat.pages.web.aem;
 
+import com.cat.config.factory.ConfigFactory;
+import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
 import com.cat.pages.web.aem.pageComponents.TopMenuComponent;
 import org.openqa.selenium.By;
@@ -11,6 +13,7 @@ public class AEMHomePage {
 
     public AEMHomePage() {
         topMenuComponent = new TopMenuComponent();
+        DriverManager.getDriver().get(ConfigFactory.getConfig().urlAEM());
     }
 
     private static final By USER_ICON = By.xpath("//li[@class=\"login my-account my-account-desktop not-logged-in crs-nav-dropdown\"]//i[@class=\"fa fa-user\"]");

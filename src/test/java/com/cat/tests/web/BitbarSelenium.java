@@ -16,7 +16,8 @@ import java.util.HashMap;
 
 public class BitbarSelenium {
 
-    public static final String URL = "https://us-west-mobile-hub.bitbar.com/wd/hub";
+    public static final String MOBILE_URL = "https://us-west-mobile-hub.bitbar.com/wd/hub";
+    public static final String WEB_URL = "https://us-west-desktop-hub.bitbar.com/wd/hub";
 
     public static void main(String[] args) throws Exception {
         // IMPORTANT: Set the following parameters according to your needs.
@@ -36,8 +37,8 @@ public class BitbarSelenium {
         capabilities.setCapability("browserVersion", "123");
 
         HashMap<String, String> bitbarOptions = new HashMap<String, String>();
-        bitbarOptions.put("project", "First test");
-        bitbarOptions.put("testrun", "My local first test");
+        bitbarOptions.put("project", "First Web Test");
+        bitbarOptions.put("testrun", "First web test run");
         bitbarOptions.put("apiKey", "hpd4QKVaXfcgteJxF7TckYrs3dkJeOBR");
         bitbarOptions.put("osVersion", "11");
         bitbarOptions.put("resolution", "1920x1080");
@@ -46,7 +47,7 @@ public class BitbarSelenium {
 
         // user-customizable parameters end here
 
-        WebDriver driver = new RemoteWebDriver(new URL(URL), capabilities);
+        WebDriver driver = new RemoteWebDriver(new URL(WEB_URL), capabilities);
 
         // check page title
         String test_url = "https://bitbar.github.io/web-testing-target/";
@@ -92,7 +93,7 @@ public class BitbarSelenium {
 
         // user-customizable parameters end here
 
-        AppiumDriver driver = new AndroidDriver(new URL("https://us-west-mobile-hub.bitbar.com/wd/hub"), capabilities);
+        AppiumDriver driver = new AndroidDriver(new URL(MOBILE_URL), capabilities);
 
         /*
         // check page title

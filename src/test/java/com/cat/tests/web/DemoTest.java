@@ -1,6 +1,6 @@
 package com.cat.tests.web;
 
-import com.cat.config.factory.BrowserStackConfigFactory;
+import com.cat.config.factory.BitbarConfigFactory;
 import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.DriverManager;
 import com.cat.driver.factory.web.local.LocalDriverFactory;
@@ -29,7 +29,7 @@ public class DemoTest extends WebBase {
 
     @Test
     public void demoTest() throws InterruptedException {
-        System.out.println(BrowserStackConfigFactory.getConfig().browserStackURL());
+        System.out.println(BitbarConfigFactory.getConfig().bitbarURL());
         System.out.println(ConfigFactory.getConfig().browser());
         WebDriver driver = LocalDriverFactory.getDriver(ConfigFactory.getConfig().browser());
         driver.get("https://wwwqa.aws.catrentalstore.com/");

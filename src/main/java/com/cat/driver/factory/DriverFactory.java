@@ -14,8 +14,7 @@ public final class DriverFactory {
         if (driverData.getRunModeType() == RunModeType.LOCAL) {
             return LocalDriverFactory.getDriver(driverData.getBrowserType());
         } else {
-            return RemoteDriverFactory.getDriver(driverData.getBrowserRemoteModeType()
-                    ,driverData.getBrowserType());
+            return RemoteDriverFactory.getDriver(driverData.getBrowserType());
         }
     }
 
