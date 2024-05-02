@@ -25,12 +25,13 @@ public interface FrameworkConfig extends Config {
     @ConverterClass(StringToBrowserTypeConverter.class)
     BrowserType browser();
 
-    @Key("runModeBrowser")
+    @Key("runModeWeb")
     @ConverterClass(StringToRunModeBrowserTypeConverter.class)
-    RunModeType browserRunMode();
+    RunModeType runModeWeb();
 
-    @ConverterClass(StringToURLConverter.class)
-    URL seleniumGridURL();
+    @Key("runModeMobile")
+    @ConverterClass(StringToRunModeBrowserTypeConverter.class)
+    RunModeType runModeMobile();
 
 
 }

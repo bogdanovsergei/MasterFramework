@@ -20,14 +20,8 @@ public final class Driver {
         }
     }
 
-    public static void initDriverForWeb() { //LocalDrive
-        WebDriverData driverData = WebDriverData.builder()
-                .browserType(ConfigFactory.getConfig().browser())
-                .runModeType(ConfigFactory.getConfig().browserRunMode())
-                .osType(BitbarConfigFactory.getConfig().osType())
-                .browserVersion(BitbarConfigFactory.getConfig().browserVersion())
-                .build();
-        WebDriver driver = DriverFactory.getDriverForWeb(driverData);
+    public static void initDriverForWeb() {
+        WebDriver driver = DriverFactory.getDriverForWeb();
         DriverManager.setDriver(driver);
     }
 

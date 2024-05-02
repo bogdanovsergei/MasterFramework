@@ -15,12 +15,12 @@ public final class BitbarChromeWebManager {
     public static WebDriver getDriver() {
         MutableCapabilities capabilities = new MutableCapabilities();
         capabilities.setCapability("platformName", BitbarConfigFactory.getConfig().osType().toString());
-        capabilities.setCapability("browserName", ConfigFactory.getConfig().browser().toString());
+        capabilities.setCapability("browserName", BitbarConfigFactory.getConfig().remoteBrowser().toString());
         capabilities.setCapability("browserVersion", BitbarConfigFactory.getConfig().browserVersion().toString());
 
         HashMap<String, String> bitbarOptions = new HashMap<String, String>();
-        bitbarOptions.put("project", "First Web Test");
-        bitbarOptions.put("testrun", "First web test run");
+        bitbarOptions.put("project", "CatRental");
+        bitbarOptions.put("testrun", "Smoke Web Test");
         bitbarOptions.put("apiKey", BitbarConfigFactory.getConfig().key());
         bitbarOptions.put("osVersion", "11");
         bitbarOptions.put("resolution", "1920x1080");

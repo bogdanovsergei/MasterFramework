@@ -36,8 +36,6 @@ public class AEMSmokeTests extends WebBase {
                 .verifyAlphabeticalOrder()
                 .clickAerialEquipment();
 
-
         waitForGivenTime(3);
-
     }
 }
