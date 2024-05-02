@@ -1,22 +1,15 @@
 package com.cat.tests.web.aem;
 
-import com.cat.config.factory.BitbarConfigFactory;
-import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.Driver;
-import com.cat.driver.DriverManager;
-import com.cat.enums.BrowserType;
 import com.cat.enums.PlatformType;
-import com.cat.enums.RunModeType;
-import com.cat.pages.web.aem.AEMHomePage;
-import com.cat.pages.web.aem.AEMLoginPage;
+import com.cat.pages.web.aem.HomePageAEM;
+import com.cat.pages.web.aem.pageComponents.LeftNavMenuComponentsAEM;
+import com.cat.pages.web.aem.pageComponents.TopMenuComponentsAEM;
 import com.cat.tests.WebBase;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-import static com.cat.utils.SeleniumUtils.waitUntilTitleIs;
+import static com.cat.utils.SeleniumUtils.maximizeWindow;
+import static com.cat.utils.SeleniumUtils.waitForGivenTime;
 
 public class AEMSmokeTests extends WebBase {
 
@@ -25,16 +18,26 @@ public class AEMSmokeTests extends WebBase {
         //WebDriver driver = DriverManager.getDriver();
         //driver.get(ConfigFactory.getConfig().urlAEM());
         Driver.initDriver(PlatformType.WEB);
-        AEMHomePage aemHomePage = new AEMHomePage();
-        aemHomePage.clickOnSignIn();
-        Thread.sleep(1000);
+        maximizeWindow();
+        HomePageAEM homePageAEM = new HomePageAEM()
+                .isCRSLogoPresent()
+                .isSignInBtnPresent()
+                .isPhoneIconPresent()
+                .isCartIconPresent()
+                .isLanguageSelectorPresent()
+                .isRegisterBtnPresent();
 
-        //AEMHomePage AEMHomePage = new AEMHomePage()
-        //        .clickOnSignIn();
-        //AEMLoginPage AEMLoginPage = new AEMLoginPage();
-        //AEMLoginPage.loginToApplication(ConfigFactory.getConfig().usernameAEM(),
-        //        ConfigFactory.getConfig().passwordAEM());
-        //waitUntilTitleIs("Rentals");
+        TopMenuComponentsAEM topMenuComponents = new TopMenuComponentsAEM()
+                .clickBrowserEquipment()
+                .clickAboutUs()
+                .clickLocation();
+
+        LeftNavMenuComponentsAEM leftNavMenuComponentsAEM = new LeftNavMenuComponentsAEM()
+                .verifyAlphabeticalOrder()
+                .clickAerialEquipment();
+
+
+        waitForGivenTime(3);
 
     }
 }

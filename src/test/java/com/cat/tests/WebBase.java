@@ -8,11 +8,12 @@ public class WebBase {
 
     @BeforeMethod
     public void setUp() {
+        //we don't need @Before because we pass Web or Mobile every time when initiating driver
         //Driver.initDriverForWeb();
     }
 
     @AfterMethod
     public void tearDown() {
-        //Driver.quitDriver();
+        Driver.quitDriver();
     }
 }

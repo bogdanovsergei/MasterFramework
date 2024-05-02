@@ -3,7 +3,7 @@ package com.cat.tests.web;
 import com.cat.config.factory.BitbarConfigFactory;
 import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.DriverManager;
-import com.cat.driver.factory.web.local.LocalDriverFactory;
+import com.cat.driver.factory.web.LocalDriverFactoryWeb;
 import com.cat.tests.WebBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 //import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class DemoTest extends WebBase {
     public void demoTest() throws InterruptedException {
         System.out.println(BitbarConfigFactory.getConfig().bitbarURL());
         System.out.println(ConfigFactory.getConfig().browser());
-        WebDriver driver = LocalDriverFactory.getDriver(ConfigFactory.getConfig().browser());
+        WebDriver driver = LocalDriverFactoryWeb.getDriver(ConfigFactory.getConfig().browser());
         driver.get("https://wwwqa.aws.catrentalstore.com/");
         Thread.sleep(2000);
         driver.manage().window().maximize();

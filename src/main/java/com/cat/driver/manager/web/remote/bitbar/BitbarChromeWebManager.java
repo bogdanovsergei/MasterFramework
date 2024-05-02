@@ -4,14 +4,12 @@ import com.cat.config.factory.BitbarConfigFactory;
 import com.cat.config.factory.ConfigFactory;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.URL;
 import java.util.HashMap;
 
-public final class BitbarChromeManager {
-    private BitbarChromeManager() {
+public final class BitbarChromeWebManager {
+    private BitbarChromeWebManager() {
     }
 
     public static WebDriver getDriver() {
@@ -29,8 +27,6 @@ public final class BitbarChromeManager {
         bitbarOptions.put("seleniumVersion", "4");
         capabilities.setCapability("bitbar:options", bitbarOptions);
 
-        // user-customizable parameters end here
-
-        return new RemoteWebDriver(BitbarConfigFactory.getConfig().bitbarURL(), capabilities);
+        return new RemoteWebDriver(BitbarConfigFactory.getConfig().bitbarURLWeb(), capabilities);
     }
 }

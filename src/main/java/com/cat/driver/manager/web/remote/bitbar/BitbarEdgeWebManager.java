@@ -3,13 +3,12 @@ package com.cat.driver.manager.web.remote.bitbar;
 import com.cat.config.factory.BitbarConfigFactory;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.HashMap;
 
-public final class BitbarEdgeManager {
-    private BitbarEdgeManager() {
+public final class BitbarEdgeWebManager {
+    private BitbarEdgeWebManager() {
     }
 
     public static WebDriver getDriver() {

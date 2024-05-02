@@ -8,23 +8,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class SeleniumUtils {
 
-    private static WebElement waitUntilPresenceOfElementLocated(By by) {
+    public static WebElement waitUntilPresenceOfElementLocated(By by) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    private static WebElement waitUntilElementToBeClickable(By by) {
+    public static WebElement waitUntilElementToBeClickable(By by) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
         return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    private static WebElement waitUntilElementToBeVisible(By by) {
+    public static WebElement waitUntilElementToBeVisible(By by) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
@@ -34,22 +35,27 @@ public class SeleniumUtils {
         wait.until(ExpectedConditions.titleIs(title));
     }
 
+    public static void waitUntilTitleContains(String title) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        wait.until(ExpectedConditions.titleContains(title));
+    }
+
     public static void sendKeys(By by, String value) {
         WebElement element = waitUntilPresenceOfElementLocated(by);
         element.sendKeys(value);
-    }
-
-    public static void click(By by) {
-        WebElement element = waitUntilElementToBeClickable(by);
-        element.click();
     }
 
     public static void click(By by, WaitType waitType) {
         WebElement element = getElementAfterWait(by, waitType);
         element.click();
     }
+    public static void click(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+    }
 
-    private static WebElement getElementAfterWait(By by, WaitType waitType) {
+    public static WebElement getElementAfterWait(By by, WaitType waitType) {
         //waitUntilElementToBeClickable(by).click();
         WebElement element = null;
         if (waitType == WaitType.PRESENCE) {
@@ -79,4 +85,7 @@ public class SeleniumUtils {
         Uninterruptibles.sleepUninterruptibly(time, TimeUnit.SECONDS);
     }
 
+    public static void maximizeWindow() {
+        DriverManager.getDriver().manage().window().maximize();
+    }
 }

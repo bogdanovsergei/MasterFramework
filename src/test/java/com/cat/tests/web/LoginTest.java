@@ -2,8 +2,8 @@ package com.cat.tests.web;
 
 import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.DriverManager;
-import com.cat.pages.web.aem.AEMHomePage;
-import com.cat.pages.web.aem.AEMLoginPage;
+import com.cat.pages.web.aem.HomePageAEM;
+import com.cat.pages.web.aem.LoginPageAEM;
 import com.cat.tests.WebBase;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.MutableCapabilities;
@@ -24,10 +24,9 @@ public class LoginTest extends WebBase {
     @Test(description = "To login with valid credentials")
     public void validCredentials() {
         DriverManager.getDriver().get(ConfigFactory.getConfig().urlAEM());
-        AEMHomePage AEMHomePage = new AEMHomePage()
-                .clickOnSignIn();
-        AEMLoginPage AEMLoginPage = new AEMLoginPage();
-        AEMLoginPage.loginToApplication(ConfigFactory.getConfig().usernameAEM(),
+        HomePageAEM HomePageAEM = new HomePageAEM();
+        LoginPageAEM LoginPageAEM = new LoginPageAEM();
+        LoginPageAEM.loginToApplication(ConfigFactory.getConfig().usernameAEM(),
                         ConfigFactory.getConfig().passwordAEM());
         waitUntilTitleIs("Rentals");
         Assert.assertEquals(getPageTitle(), "Rentals");
@@ -36,10 +35,9 @@ public class LoginTest extends WebBase {
     @Test(description = "")
     public void twoDriversTest() {
         DriverManager.getDriver().get(ConfigFactory.getConfig().urlAEM());
-        AEMHomePage AEMHomePage = new AEMHomePage()
-                .clickOnSignIn();
-        AEMLoginPage AEMLoginPage = new AEMLoginPage();
-        AEMLoginPage.loginToApplication(ConfigFactory.getConfig().usernameAEM(),
+        HomePageAEM HomePageAEM = new HomePageAEM();
+        LoginPageAEM LoginPageAEM = new LoginPageAEM();
+        LoginPageAEM.loginToApplication(ConfigFactory.getConfig().usernameAEM(),
                 ConfigFactory.getConfig().passwordAEM());
         waitUntilTitleIs("Rentals");
         titleName = getPageTitle();
@@ -47,11 +45,11 @@ public class LoginTest extends WebBase {
         System.out.println("titleName = " + titleName);
 
         DriverManager.getDriver().get(ConfigFactory.getConfig().urlDMT());
-        AEMLoginPage AEMLoginPage2 = new AEMLoginPage();
+        LoginPageAEM LoginPageAEM2 = new LoginPageAEM();
         String titleName2 = getPageTitle();
         System.out.println("titleName2 = " + titleName2);
         System.out.println("titleName = " + titleName);
-        AEMLoginPage2.loginToApplication(ConfigFactory.getConfig().usernameAEM(),
+        LoginPageAEM2.loginToApplication(ConfigFactory.getConfig().usernameAEM(),
                 ConfigFactory.getConfig().passwordAEM());
         waitForGivenTime(5000);
     }

@@ -1,17 +1,12 @@
 package com.cat.driver;
 
-import com.cat.config.BitbarConfig;
 import com.cat.config.factory.BitbarConfigFactory;
 import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.entity.WebDriverData;
-import com.cat.config.factory.ConfigFactory;
 
 import com.cat.driver.factory.DriverFactory;
-import com.cat.driver.factory.web.local.LocalDriverFactory;
 import com.cat.enums.*;
 import org.openqa.selenium.WebDriver;
-
-import java.util.Objects;
 
 public final class Driver {
 
@@ -37,7 +32,8 @@ public final class Driver {
     }
 
     public static void initDriverForMobile() {
-
+        WebDriver driver = DriverFactory.getDriverForMobile();
+        DriverManager.setDriver(driver);
     }
 
     public static void quitDriver() {

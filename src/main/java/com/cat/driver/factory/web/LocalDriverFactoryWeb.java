@@ -1,12 +1,12 @@
-package com.cat.driver.factory.web.local;
+package com.cat.driver.factory.web;
 
 import com.cat.driver.manager.web.local.ChromeManager;
 import com.cat.driver.manager.web.local.EdgeManager;
 import com.cat.enums.BrowserType;
 import org.openqa.selenium.WebDriver;
 
-public final class LocalDriverFactory {
-    private LocalDriverFactory(){}
+public final class LocalDriverFactoryWeb {
+    private LocalDriverFactoryWeb(){}
 
     public static WebDriver getDriver(BrowserType browserType) {
         return isBrowserChrome(browserType)

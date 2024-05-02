@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 import static com.cat.utils.SeleniumUtils.*;
 
-public class AEMLoginPage {
+public class LoginPageAEM {
 
     private static final By TXTBOX_USERNAME = By.id("signInName"); //100 threads  --> 1 txtBoxUsername
     private static final By TXTBOX_PASSWORD = By.id("password");
@@ -13,12 +13,12 @@ public class AEMLoginPage {
     private static final By MSG_ERROR = By.id("spanMessage");
     //private static final String MSG_ERROR_TXT = "Error Message";
 
-    private AEMLoginPage setUsername(String username) {
+    private LoginPageAEM setUsername(String username) {
         sendKeys(TXTBOX_USERNAME, username);
         return this;
     }
 
-    private AEMLoginPage setPassword(String password) {
+    private LoginPageAEM setPassword(String password) {
         sendKeys(TXTBOX_PASSWORD, password);
         return this;
     }

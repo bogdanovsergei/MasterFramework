@@ -13,14 +13,16 @@ import java.net.URL;
 })
 public interface BitbarConfig extends Config {
 
-    @Key("username")
-    String userName();
     String key();
     String browserVersion();
 
     @DefaultValue("https://us-west-desktop-hub.bitbar.com/wd/hub")
     @ConverterClass(StringToURLConverter.class)
-    URL bitbarURL();
+    URL bitbarURLWeb();
+
+    @DefaultValue("https://us-west-desktop-hub.bitbar.com/wd/hub")
+    @ConverterClass(StringToURLConverter.class)
+    URL bitbarURLMobile();
 
     @ConverterClass(StringToOSType.class)
     OSType osType();
