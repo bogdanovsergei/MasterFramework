@@ -18,11 +18,11 @@ public final class BitbarAndroidManager {
 
         HashMap<String, String> bitbarOptions = new HashMap<String, String>();
         bitbarOptions.put("project", "CatRental");
-        bitbarOptions.put("testrun", "Smoke Mobile Test");
+        bitbarOptions.put("testrun", "Smoke Mobile Android Test");
         bitbarOptions.put("app", "226530585");
         bitbarOptions.put("apiKey", BitbarConfigFactory.getConfig().key());
-        bitbarOptions.put("device", "Google Pixel 8 -US");
-        bitbarOptions.put("appiumVersion", "2.1");
+        bitbarOptions.put("device", "Google Pixel 3a -US");
+        bitbarOptions.put("appiumVersion", "2.0");
         capabilities.setCapability("bitbar:options", bitbarOptions);
 
         return new AndroidDriver(BitbarConfigFactory.getConfig().bitbarURLMobile(), capabilities);

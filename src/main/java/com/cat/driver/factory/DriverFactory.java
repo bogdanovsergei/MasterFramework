@@ -1,7 +1,6 @@
 package com.cat.driver.factory;
 
 import com.cat.config.factory.ConfigFactory;
-import com.cat.driver.entity.WebDriverData;
 import com.cat.driver.factory.mobile.LocalDriverFactoryMobile;
 import com.cat.driver.factory.mobile.RemoteDriverFactoryMobile;
 import com.cat.driver.factory.web.LocalDriverFactoryWeb;

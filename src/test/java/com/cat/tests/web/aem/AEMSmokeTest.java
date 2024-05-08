@@ -5,13 +5,13 @@ import com.cat.enums.PlatformType;
 import com.cat.pages.web.aem.HomePageAEM;
 import com.cat.pages.web.aem.pageComponents.LeftNavMenuComponentsAEM;
 import com.cat.pages.web.aem.pageComponents.TopMenuComponentsAEM;
-import com.cat.tests.WebBase;
+import com.cat.tests.BaseTest;
 import org.testng.annotations.Test;
 
 import static com.cat.utils.SeleniumUtils.maximizeWindow;
 import static com.cat.utils.SeleniumUtils.waitForGivenTime;
 
-public class AEMSmokeTests extends WebBase {
+public class AEMSmokeTest extends BaseTest {
 
     @Test
     public void aemDispatcherHomeAndGlobalTest() throws InterruptedException {

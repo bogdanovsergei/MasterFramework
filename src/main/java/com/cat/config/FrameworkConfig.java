@@ -20,6 +20,8 @@ public interface FrameworkConfig extends Config {
     String urlDMT();
     String usernameAEM();
     String passwordAEM();
+    String usernameDMT();
+    String passwordDMT();
 
     @DefaultValue("CHROME")
     @ConverterClass(StringToBrowserTypeConverter.class)

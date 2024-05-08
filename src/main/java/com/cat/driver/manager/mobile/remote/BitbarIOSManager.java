@@ -13,17 +13,19 @@ public final class BitbarIOSManager {
     }
 
     public static WebDriver getDriver() {
+        /* Remember to change your Appium URL (command executor) to 'https://us-west-mobile-hub.bitbar.com/wd/hub' */
+        /* Mobile native capabilities */
         MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("appium:automationName", "uiautomator2");
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("appium:automationName", "XCUITest");
 
         HashMap<String, String> bitbarOptions = new HashMap<String, String>();
-        bitbarOptions.put("project", "First mobile test");
-        bitbarOptions.put("testrun", "My first mobile test run");
-        bitbarOptions.put("app", "226530585");
+        bitbarOptions.put("project", "CatRental");
+        bitbarOptions.put("testrun", "Smoke Mobile iOS Test");
+        bitbarOptions.put("app", "227136965");
         bitbarOptions.put("apiKey", BitbarConfigFactory.getConfig().key());
-        bitbarOptions.put("device", "Google Pixel 8 -US");
-        bitbarOptions.put("appiumVersion", "2.1");
+        bitbarOptions.put("device", "Apple iPhone 13 Pro Max A2484 15.1 -US");
+        bitbarOptions.put("appiumVersion", "2.0");
         capabilities.setCapability("bitbar:options", bitbarOptions);
 
         return new IOSDriver(BitbarConfigFactory.getConfig().bitbarURLMobile(), capabilities);

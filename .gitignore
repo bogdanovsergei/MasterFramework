@@ -12,6 +12,10 @@ target/
 *.iml
 *.ipr
 
+# Ignore property and apk files
+*.properties
+*.apk
+
 ### Eclipse ###
 .apt_generated
 .classpath

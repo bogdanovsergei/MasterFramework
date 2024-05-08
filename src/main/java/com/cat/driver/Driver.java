@@ -2,7 +2,6 @@ package com.cat.driver;
 
 import com.cat.config.factory.BitbarConfigFactory;
 import com.cat.config.factory.ConfigFactory;
-import com.cat.driver.entity.WebDriverData;
 
 import com.cat.driver.factory.DriverFactory;
 import com.cat.enums.*;
