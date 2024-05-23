@@ -2,7 +2,9 @@ package com.cat.tests.web.dmt;
 
 import com.cat.driver.Driver;
 import com.cat.enums.PlatformType;
+import com.cat.pages.web.dmt.HomePageDMT;
 import com.cat.pages.web.dmt.LoginPageDMT;
+import com.cat.pages.web.dmt.activeRentals.ActiveRentalsPageDMT;
 import com.cat.tests.BaseTest;
 import org.testng.annotations.Test;
 
@@ -17,9 +19,34 @@ public class DMTSmokeTest extends BaseTest {
         Driver.initDriver(PlatformType.WEB);
         maximizeWindow();
 
-        LoginPageDMT loginPageDMT = new LoginPageDMT();
-        loginPageDMT.loginToApplication(getConfig().usernameDMT(), getConfig().passwordDMT());
+        HomePageDMT homePageDMT = new LoginPageDMT()
+                .acceptCookies()
+                .loginToApplication(getConfig().usernameDMT(), getConfig().passwordDMT())
+                .clickOnLogout()
+                .loginToApplication(getConfig().usernameDMT(), getConfig().passwordDMT())
+                .clickOnSwitchDealerDropdown()
+                .verifyDealersListFromSwitchDealerDropdownMenu()
+                .clickOnDealerByName("Cresco")
 
-        waitForGivenTime(4);
+                .clickOnLeftMenuByName("Messaging")
+                .clickOnLeftMenuByName("Resources")
+                .clickOnLeftMenuByName("FORMS")
+                .clickOnLeftMenuByName("CATALOG MANAGEMENT")
+                .clickOnLeftMenuByName("USER MANAGEMENT")
+                .clickOnLeftMenuByName("REPORTS")
+                .clickOnLeftMenuByName("Active Rentals");
+
+        ActiveRentalsPageDMT activeRental = new ActiveRentalsPageDMT()
+                .clickOnEnterCustomerAccountNameOrNumber()
+                .selectCustomerAccountByName("Shimmick Construction")
+                .clickOnJobsiteInput()
+                .selectJobsiteByName("All Jobsites")
+                .clickOnShowRentalsBtn()
+                .clickOnAssetByIndex(0);
+
+        homePageDMT.clickOnLeftMenuByName("Reports")
+                ;
+
+        waitForGivenTime(6);
     }
 }

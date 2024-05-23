@@ -2,6 +2,7 @@ package com.cat.config;
 
 import com.cat.config.converters.*;
 import com.cat.enums.BrowserType;
+import com.cat.enums.MobilePlatformType;
 import com.cat.enums.RunModeType;
 import org.aeonbits.owner.Config;
 
@@ -16,12 +17,16 @@ import java.net.URL;
 public interface FrameworkConfig extends Config {
 
     long timeout();
+    long timeoutMobile();
     String urlAEM();
     String urlDMT();
     String usernameAEM();
     String passwordAEM();
     String usernameDMT();
     String passwordDMT();
+    String appNameAndroid();
+    String appPackage();
+    String appActivity();
 
     @DefaultValue("CHROME")
     @ConverterClass(StringToBrowserTypeConverter.class)
@@ -35,5 +40,12 @@ public interface FrameworkConfig extends Config {
     @ConverterClass(StringToRunModeBrowserTypeConverter.class)
     RunModeType runModeMobile();
 
+    @DefaultValue("ANDROID")
+    @ConverterClass(StringToMobilePlatformType.class)
+    MobilePlatformType mobilePlatformLocal();
+
+    @DefaultValue("http://127.0.0.1:4723")
+    @ConverterClass(StringToURLConverter.class)
+    URL localURL();
 
 }

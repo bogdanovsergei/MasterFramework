@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SeleniumUtils {
@@ -23,6 +24,11 @@ public class SeleniumUtils {
     public static WebElement waitUntilElementToBeClickable(By by) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
         return wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public static WebElement waitUntilElementToBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public static WebElement waitUntilElementToBeVisible(By by) {
@@ -69,7 +75,7 @@ public class SeleniumUtils {
     }
 
     public static String getElementText(By by) {
-        WebElement element = waitUntilPresenceOfElementLocated(by);
+        WebElement element = waitUntilElementToBeVisible(by);
         return element.getText();
     }
 
@@ -88,4 +94,9 @@ public class SeleniumUtils {
     public static void maximizeWindow() {
         DriverManager.getDriver().manage().window().maximize();
     }
+
+    public static List<WebElement> getListOfWebElements(By by) {
+        return DriverManager.getDriver().findElements(by);
+    }
+
 }

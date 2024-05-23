@@ -26,9 +26,18 @@
     <javafaker.version>1.0.2</javafaker.version>
     <awaitility.version>4.2.1</awaitility.version>
     <noexception.version>1.9.1</noexception.version>
+    <hamcrest.version>2.2</hamcrest.version>
   </properties>
 
   <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>${hamcrest.version}</version>
+      <scope>test</scope>
+    </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.machinezoo.noexception/noexception -->
     <dependency>

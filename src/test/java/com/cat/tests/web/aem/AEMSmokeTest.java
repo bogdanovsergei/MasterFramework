@@ -14,7 +14,7 @@ import static com.cat.utils.SeleniumUtils.waitForGivenTime;
 public class AEMSmokeTest extends BaseTest {
 
     @Test
-    public void aemDispatcherHomeAndGlobalTest() throws InterruptedException {
+    public void aemDispatcherHomeAndGlobalTest() {
         //WebDriver driver = DriverManager.getDriver();
         //driver.get(ConfigFactory.getConfig().urlAEM());
         Driver.initDriver(PlatformType.WEB);

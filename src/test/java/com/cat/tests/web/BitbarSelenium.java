@@ -1,5 +1,7 @@
 package com.cat.tests.web;
 
+import com.cat.config.factory.BitbarConfigFactory;
+import com.cat.config.factory.ConfigFactory;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -39,7 +41,7 @@ public class BitbarSelenium {
         HashMap<String, String> bitbarOptions = new HashMap<String, String>();
         bitbarOptions.put("project", "First Web Test");
         bitbarOptions.put("testrun", "First web test run");
-        bitbarOptions.put("apiKey", "hpd4QKVaXfcgteJxF7TckYrs3dkJeOBR");
+        bitbarOptions.put("apiKey", BitbarConfigFactory.getConfig().key());
         bitbarOptions.put("osVersion", "11");
         bitbarOptions.put("resolution", "1920x1080");
         bitbarOptions.put("seleniumVersion", "4");
@@ -86,7 +88,7 @@ public class BitbarSelenium {
         HashMap<String, String> bitbarOptions = new HashMap<String, String>();
         bitbarOptions.put("project", "First test");
         bitbarOptions.put("testrun", "My local first test");
-        bitbarOptions.put("apiKey", "hpd4QKVaXfcgteJxF7TckYrs3dkJeOBR");
+        bitbarOptions.put("apiKey", BitbarConfigFactory.getConfig().key());
         bitbarOptions.put("device", "Google Pixel 7 -US");
         bitbarOptions.put("appiumVersion", "2.1");
         capabilities.setCapability("bitbar:options", bitbarOptions);

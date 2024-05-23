@@ -4,51 +4,99 @@ import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.Driver;
 import com.cat.driver.DriverManager;
 import com.cat.enums.PlatformType;
+import com.cat.pages.mobile.homeScreen.HomeScreen;
+import com.cat.pages.mobile.homeScreen.rentScreen.RentScreen;
+import com.cat.pages.mobile.loginScreen.LoginScreen;
+import com.cat.pages.web.dmt.LoginPageDMT;
+import com.cat.tests.BaseTest;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
-import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
+import static com.cat.utils.MobileUtils.*;
+import static com.cat.utils.SeleniumUtils.*;
 
-import static com.cat.utils.SeleniumUtils.click;
-
-public class MobileSmokeTest {
-
-    public static final String MOBILE_URL = "https://us-west-mobile-hub.bitbar.com/wd/hub";
+public class MobileSmokeTest extends BaseTest {
+    //public static final String MOBILE_URL = "https://us-west-mobile-hub.bitbar.com/wd/hub";
 
     @Test
-    public void remoteMobileTest() {
+    public void mobileTest() throws InterruptedException {
         Driver.initDriver(PlatformType.MOBILE);
-        Driver.quitDriver();
-    }
-
-    @Test
-    public void localMobileTest() throws MalformedURLException, InterruptedException {
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setPlatformName("Android");
-        options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setDeviceName("testName");
-        options.setApp(System.getProperty("user.dir") + "\\apps\\com.perficient.rental.catstaging-Signed.apk");
-        options.setAppPackage("com.perficient.rental.catstaging");
-        options.setAppActivity("crc64cae1090ad46f60b5.InitializeView");
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+        WebDriver driver = DriverManager.getDriver();
         Thread.sleep(3000);
 
         driver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/switch_accept"))));
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        //wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/switch_accept"))));
         driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/switch_accept")).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/button_accept"))));
+        //wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/button_accept"))));
         driver.findElement(By.id("com.perficient.rental.catstaging:id/button_accept")).click();
+        String title = driver.getTitle();
         Thread.sleep(4000);
+
+        System.out.println("Title is " + title);
+
+        Driver.initDriver(PlatformType.WEB);
+        maximizeWindow();
+
+        LoginPageDMT loginPageDMT = new LoginPageDMT();
+        String title2 = DriverManager.getDriver().getTitle();
+        System.out.println("Title2 is " + title);
+        Assert.assertEquals(title, title2);
     }
+
+    @Test
+    public void mobileSmokeTest() {
+        Driver.initDriver(PlatformType.MOBILE);
+        WebDriver driver = DriverManager.getDriver();
+
+        HomeScreen loginScreen = new LoginScreen()
+                .acceptAgreement()
+                .acceptBiometrics()
+                .acceptGoogleTermsAndCookies()
+                .loginToApplication(ConfigFactory.getConfig().usernameAEM(),
+                                    ConfigFactory.getConfig().passwordAEM());
+        waitForGivenTime(10);
+        closeBrowserAndGetToApp();
+        waitForGivenTime(10);
+
+        RentScreen homeScreenVerification = loginScreen
+                        .verifyLabelQuickActions()
+                .clickOnCRSLogo()
+                        .verifyLabelQuickActions()
+                .clickOnRentBottomMenu()
+                        .verifyHeaderName();
+
+        loginScreen.clickOnRequestsBottomMenu()
+                .verifyHeaderName();
+        loginScreen.clickOnMyRentalsBottomMenu()
+                .verifyHeaderName();
+        loginScreen.clickOnMyAccountBottomMenu()
+                .verifyCatUsername();
+        loginScreen.clickOnDashboardBottomMenu()
+                .verifyLabelQuickActions();
+
+/*
+        HomeScreen requestServiceVerification = homeScreenVerification
+                .clickOnRequestService()
+                    .verifyHeaderName()
+                    .clickOnBackArrow()
+                .clickOnEndRental()
+                    .verifyHeaderName()
+                    .clickOnBackArrow();
+                .clickOnExtendRental()
+                    .verifyHeaderName()
+                    .clickOnBackArrow()
+                .clickOnTransferJobsites()
+                    .verifyHeaderName()
+                    .clickOnBackArrow();
+*/
+        waitForGivenTime(5);
+
+    }
+
 }

@@ -15,6 +15,7 @@ target/
 # Ignore property and apk files
 *.properties
 *.apk
+*.ipa
 
 ### Eclipse ###
 .apt_generated
