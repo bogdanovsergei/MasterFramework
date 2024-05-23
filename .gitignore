@@ -12,7 +12,7 @@ target/
 *.iml
 *.ipr
 
-# Ignore property and apk files
+# Ignore property and mobile files
 *.properties
 *.apk
 *.ipa

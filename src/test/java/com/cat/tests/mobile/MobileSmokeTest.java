@@ -80,21 +80,20 @@ public class MobileSmokeTest extends BaseTest {
         loginScreen.clickOnDashboardBottomMenu()
                 .verifyLabelQuickActions();
 
-/*
-        HomeScreen requestServiceVerification = homeScreenVerification
+        HomeScreen requestServiceVerification = new HomeScreen()
                 .clickOnRequestService()
                     .verifyHeaderName()
                     .clickOnBackArrow()
                 .clickOnEndRental()
                     .verifyHeaderName()
-                    .clickOnBackArrow();
+                    .clickOnBackArrow()
                 .clickOnExtendRental()
                     .verifyHeaderName()
                     .clickOnBackArrow()
                 .clickOnTransferJobsites()
                     .verifyHeaderName()
                     .clickOnBackArrow();
-*/
+
         waitForGivenTime(5);
 
     }
