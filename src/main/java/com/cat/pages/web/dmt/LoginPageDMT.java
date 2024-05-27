@@ -14,7 +14,6 @@ public class LoginPageDMT {
 
     public LoginPageDMT() {
         //topMenuComponent = new TopMenuComponentsAEM();
-        DriverManager.getDriver().get(ConfigFactory.getConfig().urlDMT());
     }
 
     private static final By TXTBOX_USERNAME = By.id("signInName"); //100 threads  --> 1 txtBoxUsername

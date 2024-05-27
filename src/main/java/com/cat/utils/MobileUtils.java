@@ -13,11 +13,14 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -131,5 +134,24 @@ public class MobileUtils {
         androidDriver.context(currentContext);
     }
 
+    private static void performScroll() {
+        Dimension size = DriverManager.getDriver().manage().window().getSize();
+        int startX = size.getWidth() / 2;
+        int endX = size.getWidth() / 2;
+        int startY = size.getHeight() / 2;
+        int endY = (int) (size.getHeight() * 0.25);
 
+        performScrollUsingSequence(startX, startY, endX, endY);
+    }
+
+    private static void performScrollUsingSequence(int startX, int startY, int endX, int endY) {
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "first-finger");
+        Sequence sequence = new Sequence(finger, 0)
+                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))
+                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), endX, endY))
+                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        ((AppiumDriver)(DriverManager.getDriver())).perform(Collections.singletonList(sequence));
+    }
 }

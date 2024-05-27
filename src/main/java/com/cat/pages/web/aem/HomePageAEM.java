@@ -4,6 +4,7 @@ import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
 import com.cat.pages.web.aem.pageComponents.TopMenuComponentsAEM;
+import com.cat.pages.web.dmt.LoginPageDMT;
 import org.openqa.selenium.By;
 import static com.cat.utils.SeleniumUtils.*;
 
@@ -13,7 +14,6 @@ public class HomePageAEM {
 
     public HomePageAEM() {
         topMenuComponent = new TopMenuComponentsAEM();
-        DriverManager.getDriver().get(ConfigFactory.getConfig().urlAEM());
     }
 
     private static final By USER_ICON = By.xpath("//li[@class=\"login my-account my-account-desktop not-logged-in crs-nav-dropdown\"]//i[@class=\"fa fa-user\"]");
@@ -25,7 +25,12 @@ public class HomePageAEM {
     private static final By CART_ICON=By.xpath("//a[contains(text(),'CART')]");
     private static final By LANGUAGE_SELECTOR=By.xpath("//span[@class='current-lenguage']");
     private static final By REGISTER_BTN=By.xpath("//a[@class='register-button']");
+    private static final By ACCEPT_COOKIES_BTN = By.id("onetrust-accept-btn-handler");
 
+    public HomePageAEM acceptCookies() {
+        click(ACCEPT_COOKIES_BTN, WaitType.VISIBLE);
+        return this;
+    }
     /*
     public void clickOnRentals() {
         topMenuComponent.clickRentals();

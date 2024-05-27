@@ -2,10 +2,14 @@ package com.cat.utils;
 
 import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.DriverManager;
+import com.cat.driver.manager.web.local.EdgeManager;
 import com.cat.enums.WaitType;
 import com.google.common.util.concurrent.Uninterruptibles;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -99,4 +103,23 @@ public class SeleniumUtils {
         return DriverManager.getDriver().findElements(by);
     }
 
+    public static void scrollByPixels(long pixels) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("window.scrollBy(0, "+pixels+")");
+    }
+
+    public static void scrollToBottom() {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    }
+
+    public static void hoverToElement(By by) {
+        WebElement elementToHover = DriverManager.getDriver().findElement(by);
+        Actions actions = new Actions(DriverManager.getDriver());
+        actions.moveToElement(elementToHover).perform();
+    }
+
+    public static void refreshPage() {
+        DriverManager.getDriver().navigate().refresh();
+    }
 }

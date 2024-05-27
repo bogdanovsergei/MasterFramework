@@ -8,7 +8,6 @@ import com.cat.pages.mobile.homeScreen.HomeScreen;
 import com.cat.pages.mobile.homeScreen.rentScreen.RentScreen;
 import com.cat.pages.mobile.loginScreen.LoginScreen;
 import com.cat.pages.web.dmt.LoginPageDMT;
-import com.cat.tests.BaseTest;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +17,7 @@ import org.testng.annotations.Test;
 import static com.cat.utils.MobileUtils.*;
 import static com.cat.utils.SeleniumUtils.*;
 
-public class MobileSmokeTest extends BaseTest {
+public class MobileSmokeTest extends BaseTestMobile {
     //public static final String MOBILE_URL = "https://us-west-mobile-hub.bitbar.com/wd/hub";
 
     @Test
@@ -51,8 +50,8 @@ public class MobileSmokeTest extends BaseTest {
 
     @Test
     public void mobileSmokeTest() {
-        Driver.initDriver(PlatformType.MOBILE);
-        WebDriver driver = DriverManager.getDriver();
+        //Driver.initDriver(PlatformType.MOBILE);
+        //WebDriver driver = DriverManager.getDriver();
 
         HomeScreen loginScreen = new LoginScreen()
                 .acceptAgreement()
