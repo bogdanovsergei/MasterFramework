@@ -15,7 +15,7 @@ public class ExtendRentalScreen {
     private static final By BACK_ARROW = AppiumBy.xpath("//android.widget.ImageView[@resource-id=\"com.perficient.rental.catstaging:id/imageview_backarrow\"]");
 
     public ExtendRentalScreen verifyHeaderName() {
-        areEqual(DriverManager.getDriver().findElement(HEADER_NAME).getText(),"Extend Rental");
+        areEqual(DriverManager.getDriver().findElement(HEADER_NAME).getText(),"EXTEND RENTAL");
         return this;
     }
 

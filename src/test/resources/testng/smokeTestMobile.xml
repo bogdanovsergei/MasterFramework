@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SmokeTestMobileSuite">
+    <test name="SmokeTestMobile">
+        <classes>
+            <class name="com.cat.tests.mobile.MobileSmokeTest"/>
+        </classes>
+    </test>
+</suite>

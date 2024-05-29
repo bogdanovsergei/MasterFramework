@@ -13,7 +13,7 @@ import static com.cat.utils.SeleniumUtils.waitForGivenTime;
 
 public class DMTSmokeTest extends BaseTestDMT {
 
-    @Test
+    @Test (groups = {"smoke"})
     public void dmtSmokeTest() {
 
         HomePageDMT homePageDMT = new LoginPageDMT()

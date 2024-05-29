@@ -15,7 +15,7 @@ import java.net.URL;
 @Config.Sources({
         "system:properties",
         "system:env",
-        "file:${user.dir}/src/test/resources/api.properties"
+        "file:${user.dir}/src/test/resources/properties/api.properties"
 })
 public interface ApiConfig extends Config {
 

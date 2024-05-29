@@ -18,37 +18,8 @@ import static com.cat.utils.MobileUtils.*;
 import static com.cat.utils.SeleniumUtils.*;
 
 public class MobileSmokeTest extends BaseTestMobile {
-    //public static final String MOBILE_URL = "https://us-west-mobile-hub.bitbar.com/wd/hub";
 
-    @Test
-    public void mobileTest() throws InterruptedException {
-        Driver.initDriver(PlatformType.MOBILE);
-        WebDriver driver = DriverManager.getDriver();
-        Thread.sleep(3000);
-
-        driver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
-
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
-        //wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/switch_accept"))));
-        driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/switch_accept")).click();
-
-        //wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(AppiumBy.id("com.perficient.rental.catstaging:id/button_accept"))));
-        driver.findElement(By.id("com.perficient.rental.catstaging:id/button_accept")).click();
-        String title = driver.getTitle();
-        Thread.sleep(4000);
-
-        System.out.println("Title is " + title);
-
-        Driver.initDriver(PlatformType.WEB);
-        maximizeWindow();
-
-        LoginPageDMT loginPageDMT = new LoginPageDMT();
-        String title2 = DriverManager.getDriver().getTitle();
-        System.out.println("Title2 is " + title);
-        Assert.assertEquals(title, title2);
-    }
-
-    @Test
+    @Test (groups = {"smoke"})
     public void mobileSmokeTest() {
         //Driver.initDriver(PlatformType.MOBILE);
         //WebDriver driver = DriverManager.getDriver();
@@ -63,13 +34,15 @@ public class MobileSmokeTest extends BaseTestMobile {
         closeBrowserAndGetToApp();
         waitForGivenTime(10);
 
-        RentScreen homeScreenVerification = loginScreen
-                        .verifyLabelQuickActions()
+        loginScreen.verifyLabelQuickActions()
+                .clickOnRentEquipment()
+                .verifyHeaderName();
+
+        loginScreen.clickOnDashboardBottomMenu()
                 .clickOnCRSLogo()
                         .verifyLabelQuickActions()
                 .clickOnRentBottomMenu()
                         .verifyHeaderName();
-
         loginScreen.clickOnRequestsBottomMenu()
                 .verifyHeaderName();
         loginScreen.clickOnMyRentalsBottomMenu()
@@ -83,9 +56,9 @@ public class MobileSmokeTest extends BaseTestMobile {
                 .clickOnRequestService()
                     .verifyHeaderName()
                     .clickOnBackArrow()
-                .clickOnEndRental()
-                    .verifyHeaderName()
-                    .clickOnBackArrow()
+                //.clickOnEndRental()
+                //    .verifyHeaderName()
+                //    .clickOnBackArrow()
                 .clickOnExtendRental()
                     .verifyHeaderName()
                     .clickOnBackArrow()

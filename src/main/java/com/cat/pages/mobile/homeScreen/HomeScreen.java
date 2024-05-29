@@ -5,12 +5,15 @@ import com.cat.enums.WaitType;
 import com.cat.pages.mobile.homeScreen.endRentalScreen.EndRentalScreen;
 import com.cat.pages.mobile.homeScreen.extendRentalScreen.ExtendRentalScreen;
 import com.cat.pages.mobile.homeScreen.myAccountScreen.MyAccountScreen;
+import com.cat.pages.mobile.homeScreen.myRentalsScreen.MyRentalsScreen;
 import com.cat.pages.mobile.homeScreen.rentScreen.RentScreen;
 import com.cat.pages.mobile.homeScreen.requestServiceScreen.RequestServiceScreen;
 import com.cat.pages.mobile.homeScreen.requestsScreen.RequestsScreen;
 import com.cat.pages.mobile.homeScreen.transferJobsitesScreen.TransferJobsitesScreen;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
+
+import java.sql.SQLOutput;
 
 import static com.cat.utils.MobileUtils.*;
 //import static com.cat.utils.SeleniumUtils.click;
@@ -24,7 +27,7 @@ public class HomeScreen {
     private static final By EXTEND_RENTAL_BTN = AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.perficient.rental.catstaging:id/button_extend\"]");
     private static final By TRANSFER_JOBSITES_BTN = AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.perficient.rental.catstaging:id/button_transfer\"]");
     private static final By CRS_LOGO = AppiumBy.xpath("//android.widget.ImageView[@resource-id=\"com.perficient.rental.catstaging:id/imageview_logo\"]");
-
+    private static final By RENT_EQUIPMENT_BTN = AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.perficient.rental.catstaging:id/button_rent_equipment\"]");
     //bottom menu
     private static final By BOTTOM_MENU_DASHBOARD = AppiumBy.xpath("//android.widget.FrameLayout[@content-desc=\"Dashboard\"]");
     private static final By BOTTOM_MENU_RENT = AppiumBy.xpath("//android.widget.FrameLayout[@content-desc=\"Rent\"]");
@@ -78,10 +81,10 @@ public class HomeScreen {
         return new RequestsScreen();
     }
 
-    public RequestsScreen clickOnMyRentalsBottomMenu() {
+    public MyRentalsScreen clickOnMyRentalsBottomMenu() {
         click(BOTTOM_MENU_MYRENTALS, WaitType.CLICKABLE);
         waitForGivenTime(15);
-        return new RequestsScreen();
+        return new MyRentalsScreen();
     }
 
     public MyAccountScreen clickOnMyAccountBottomMenu() {
@@ -94,5 +97,11 @@ public class HomeScreen {
         click(BOTTOM_MENU_DASHBOARD, WaitType.CLICKABLE);
         waitForGivenTime(15);
         return new HomeScreen();
+    }
+
+    public RentScreen clickOnRentEquipment() {
+        click(RENT_EQUIPMENT_BTN, WaitType.CLICKABLE);
+        waitForGivenTime(15);
+        return new RentScreen();
     }
 }

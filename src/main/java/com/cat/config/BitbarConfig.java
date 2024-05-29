@@ -13,7 +13,7 @@ import java.net.URL;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "file:${user.dir}/src/test/resources/bitbar.properties"
+        "file:${user.dir}/src/test/resources/properties/bitbar.properties"
 })
 public interface BitbarConfig extends Config {
 

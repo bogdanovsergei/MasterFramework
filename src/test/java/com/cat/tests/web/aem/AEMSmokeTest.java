@@ -10,7 +10,7 @@ import static com.cat.utils.SeleniumUtils.*;
 
 public class AEMSmokeTest extends BaseTestAEM {
 
-    @Test
+    @Test (groups = {"smoke"})
     public void aemDispatcherHomeAndGlobalTest() {
         HomePageAEM homePageAEM = new HomePageAEM()
                 .acceptCookies()

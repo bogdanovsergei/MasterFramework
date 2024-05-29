@@ -15,7 +15,7 @@ public class TransferJobsitesScreen {
     private static final By BACK_ARROW = AppiumBy.xpath("//android.widget.ImageView[@resource-id=\"com.perficient.rental.catstaging:id/imageview_backarrow\"]");
 
     public TransferJobsitesScreen verifyHeaderName() {
-        areEqual(DriverManager.getDriver().findElement(HEADER_NAME).getText(),"Extend Rental");
+        areEqual(DriverManager.getDriver().findElement(HEADER_NAME).getText(),"TRANSFER RENTAL");
         return this;
     }
 
