@@ -20,7 +20,7 @@ public final class DriverManager {
     private static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<WebDriver> MOBILE_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<PlatformType> CONTEXT = withInitial(() -> WEB);
-    private static final Map<PlatformType, ThreadLocal<WebDriver>> DRIVER_MAP = new EnumMap<>(PlatformType.class);
+    //private static final Map<PlatformType, ThreadLocal<WebDriver>> DRIVER_MAP = new EnumMap<>(PlatformType.class);
 
     public static WebDriver getDriver() {
         return CONTEXT.get() == WEB
@@ -31,11 +31,11 @@ public final class DriverManager {
     public static void setDriver(WebDriver driver) {
         if (isMobileDriver(driver)) {
             MOBILE_DRIVER_THREAD_LOCAL.set(driver);
-            DRIVER_MAP.put(MOBILE, MOBILE_DRIVER_THREAD_LOCAL);
+            //DRIVER_MAP.put(MOBILE, MOBILE_DRIVER_THREAD_LOCAL);
             CONTEXT.set(MOBILE);
         } else {
             WEB_DRIVER_THREAD_LOCAL.set(driver);
-            DRIVER_MAP.put(WEB, WEB_DRIVER_THREAD_LOCAL);
+            //DRIVER_MAP.put(WEB, WEB_DRIVER_THREAD_LOCAL);
             CONTEXT.set(WEB);
         }
     }

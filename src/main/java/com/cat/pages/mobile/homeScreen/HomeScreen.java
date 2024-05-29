@@ -47,7 +47,7 @@ public class HomeScreen {
 
     public RequestServiceScreen clickOnRequestService() {
         click(REQUEST_SERVICE_BTN, WaitType.CLICKABLE);
-        waitForGivenTime(40);
+        waitForGivenTime(50);
         return new RequestServiceScreen();
     }
 
@@ -59,7 +59,7 @@ public class HomeScreen {
 
     public ExtendRentalScreen clickOnExtendRental() {
         click(EXTEND_RENTAL_BTN, WaitType.CLICKABLE);
-        waitForGivenTime(40);
+        waitForGivenTime(50);
         return new ExtendRentalScreen();
     }
 

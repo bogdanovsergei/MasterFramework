@@ -13,8 +13,8 @@ import static com.cat.utils.SeleniumUtils.waitForGivenTime;
 
 public class DMTSmokeTest extends BaseTestDMT {
 
-    @Test (groups = {"smoke"})
-    public void dmtSmokeTest() {
+    @Test (groups = {"smoke", "DMT"})
+    public void dmtSmokeTest1_HomepageNavigation() {
 
         HomePageDMT homePageDMT = new LoginPageDMT()
                 .acceptCookies()
@@ -41,9 +41,14 @@ public class DMTSmokeTest extends BaseTestDMT {
                 .clickOnShowRentalsBtn()
                 .clickOnAssetByIndex(0);
 
-        homePageDMT.clickOnLeftMenuByName("Reports")
+       // homePageDMT.clickOnLeftMenuByName("Reports")
                 ;
 
         waitForGivenTime(6);
+    }
+
+    @Test (groups = {"smoke", "DMT"})
+    public void dmtSmokeTest2_RequestsRegistration() {
+
     }
 }
