@@ -1,6 +1,9 @@
 package com.cat.tests.web.aem;
 
-import com.cat.pages.web.aem.HomePageAEM;
+import com.cat.pages.web.aem.homePage.HomePageAEM;
+import com.cat.pages.web.aem.homePage.addToRequestModalPage.AddToRequestModalPageAEM;
+import com.cat.pages.web.aem.homePage.aerialEquipmentPage.AerialEquipmentPageAEM;
+import com.cat.pages.web.aem.homePage.searchListEquipmentResultPage.SearchListEquipmentsResultPageAEM;
 import com.cat.pages.web.aem.pageComponents.FooterComponentsAEM;
 import com.cat.pages.web.aem.pageComponents.LeftNavMenuComponentsAEM;
 import com.cat.pages.web.aem.pageComponents.TopMenuComponentsAEM;
@@ -10,7 +13,7 @@ import static com.cat.utils.SeleniumUtils.*;
 
 public class AEMSmokeTest extends BaseTestAEM {
 
-    @Test (groups = {"smoke"})
+    @Test (groups = {"smoke", "AEM"})
     public void aemDispatcherHomeAndGlobalTest() {
         HomePageAEM homePageAEM = new HomePageAEM()
                 .acceptCookies()
@@ -29,10 +32,10 @@ public class AEMSmokeTest extends BaseTestAEM {
                 .clickOnLocation()
                 .clickOnBlog();
 
-        LeftNavMenuComponentsAEM leftNavMenuComponentsAEM = new LeftNavMenuComponentsAEM()
+        AerialEquipmentPageAEM leftNavMenuComponentsAEM = new LeftNavMenuComponentsAEM()
                 .verifyAlphabeticalOrder()
-                .clickOnAerialEquipment()
-                .clickOnAirEquipment()
+                .clickOnAerialEquipment();
+        new LeftNavMenuComponentsAEM().clickOnAirEquipment()
                 .clickOnCompactionEquipment()
 
                 .scrollLeftNavMenuByPixels(1000)
@@ -60,5 +63,49 @@ public class AEMSmokeTest extends BaseTestAEM {
         waitForGivenTime(3);
         refreshPage();
         waitForGivenTime(3);
+    }
+
+    @Test (groups = {"smoke", "AEM"})
+    public void aemDispatcherProductsTest() {
+        HomePageAEM homePageAEM = new HomePageAEM()
+                .acceptCookies()
+                .isCRSLogoPresent();
+        SearchListEquipmentsResultPageAEM searchListEquipmentsResultPageAEM = new FooterComponentsAEM()
+                .scrollToBottomPage()
+                .clickOnBrowseEquipment()
+                .enterEquipmentInSearchBox("BOOM LIFT, 40FT ARTICULATING")
+                .enterLocationInSearchBox("Ohio, US")
+                .clickOnFindEquipmentBtn()
+                .clickOnEquipmentByIndex(1)
+                .clickOnQuantityPlus()
+                .selectStartDate()
+                .selectEndDate()
+                //.selectFirstAttachment()
+                .scrollToBottom()
+                .inputNotes("test Product 1")
+                .clickOnAddToRequestButton();
+        TopMenuComponentsAEM topMenuComponentsAEM = new TopMenuComponentsAEM()
+                .isCartItemsNumberEqualTo(2);
+        searchListEquipmentsResultPageAEM
+                .clickOnEquipmentByIndex(2)
+                .clickOnQuantityPlus()
+                .scrollToBottom()
+                .inputNotes("test Product 2")
+                .clickOnAddToRequestButton();
+        topMenuComponentsAEM
+                .isCartItemsNumberEqualTo(4)
+                .clickOnCartIcon()
+                ;
+
+        /*
+        BoomLiftsAEM leftNavMenuComponentsAEM = new LeftNavMenuComponentsAEM()
+                .clickOnAerialEquipment()
+                .clickOnBoomLifts()
+                .closeFindEquipmentNearYouPopUp()
+                .clickOnBoomLiftByIndex(0)
+                ;
+                */
+
+        waitForGivenTime(8);
     }
 }

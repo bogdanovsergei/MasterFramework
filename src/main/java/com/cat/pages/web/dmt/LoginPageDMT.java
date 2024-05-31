@@ -1,9 +1,6 @@
 package com.cat.pages.web.dmt;
 
-import com.cat.config.factory.ConfigFactory;
-import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
-import com.cat.pages.web.aem.LoginPageAEM;
 import org.openqa.selenium.By;
 
 import static com.cat.utils.SeleniumUtils.*;

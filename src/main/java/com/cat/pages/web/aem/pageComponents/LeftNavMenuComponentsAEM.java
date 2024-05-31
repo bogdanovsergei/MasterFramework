@@ -2,6 +2,7 @@ package com.cat.pages.web.aem.pageComponents;
 
 import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
+import com.cat.pages.web.aem.homePage.aerialEquipmentPage.AerialEquipmentPageAEM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -24,10 +25,10 @@ public class LeftNavMenuComponentsAEM {
     private static final By FIND_A_DEALER_MENU = By.id("find-a-dealer-link");
     private static final By FEEDBACK_MENU = By.id("left-nav-feedback-link");
 
-    public LeftNavMenuComponentsAEM clickOnAerialEquipment() {
+    public AerialEquipmentPageAEM clickOnAerialEquipment() {
         click(AERIAL_EQUIPMENT_MENU, WaitType.CLICKABLE);
         contains(getElementText(HEADER),getElementText(AERIAL_EQUIPMENT_MENU));
-        return this;
+        return new AerialEquipmentPageAEM();
     }
 
     public LeftNavMenuComponentsAEM clickOnAirEquipment() {

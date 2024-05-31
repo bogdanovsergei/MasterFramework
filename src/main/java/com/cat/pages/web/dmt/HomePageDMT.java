@@ -1,17 +1,11 @@
 package com.cat.pages.web.dmt;
 
-import com.cat.config.factory.ConfigFactory;
 import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
-import com.cat.pages.web.aem.LoginPageAEM;
-import com.cat.pages.web.aem.pageComponents.TopMenuComponentsAEM;
 import com.cat.pages.web.dmt.pageComponents.LeftNavMenuComponentsDMT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.cat.utils.SeleniumUtils.*;

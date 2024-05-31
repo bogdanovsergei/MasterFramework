@@ -1,4 +1,4 @@
-package com.cat.pages.web.aem;
+package com.cat.pages.web.aem.loginPage;
 
 import com.cat.enums.WaitType;
 import org.openqa.selenium.By;

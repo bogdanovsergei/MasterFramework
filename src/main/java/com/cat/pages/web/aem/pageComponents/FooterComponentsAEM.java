@@ -2,6 +2,7 @@ package com.cat.pages.web.aem.pageComponents;
 
 import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
+import com.cat.pages.web.aem.homePage.browseEquipmentPage.BrowseEquipmentPageAEM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,7 @@ public class FooterComponentsAEM {
     private static final By COOKIE_SETTINGS_CONTENT = By.id("ot-pc-content");
     private static final By TARGETING_COOkIES_TOGGLE = By.xpath("//label[@for='ot-group-id-C0004']");
     private static final By CONFIRM_MY_CHOICES_BTN = By.xpath("//button[contains(text(),'Confirm My Choices')]");
+    private static final By BROWSE_EQUIPMENT = By.xpath("//div[@class='container-fluid footer_auth-track']//a[contains(text(),'Browse Equipment')]");
 
     private static final By BROWSE_EQUIPMENT_ES = By.xpath("//a[contains(text(),'Buscar equipo') and @tabindex='1']");
     private static final By BROWSE_EQUIPMENT_EN =By.xpath("//a[contains(text(),'Browse Equipment') and @tabindex='1']");
@@ -39,6 +41,13 @@ public class FooterComponentsAEM {
         waitForGivenTime(3);
         click(COOKIE_SETTINGS, WaitType.CLICKABLE);
         return this;
+    }
+
+    public BrowseEquipmentPageAEM clickOnBrowseEquipment() {
+        waitForGivenTime(3);
+        click(BROWSE_EQUIPMENT, WaitType.CLICKABLE);
+        waitUntilTitleIs("Tool Rentals & Equipment Rentals Near You | The Cat Rental Store");
+        return new BrowseEquipmentPageAEM();
     }
 
     public FooterComponentsAEM clickOnTargetingCookies() {
