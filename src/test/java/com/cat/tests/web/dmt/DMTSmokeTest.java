@@ -5,6 +5,9 @@ import com.cat.enums.PlatformType;
 import com.cat.pages.web.dmt.HomePageDMT;
 import com.cat.pages.web.dmt.LoginPageDMT;
 import com.cat.pages.web.dmt.activeRentals.ActiveRentalsPageDMT;
+import com.cat.pages.web.dmt.pageComponents.LeftNavMenuComponentsDMT;
+import com.cat.pages.web.dmt.requests.requestsRegistration.RequestsRegistrationPageDMT;
+import com.cat.pages.web.dmt.requests.requestsRegistration.registrationRequestDetail.RegistrationRequestDetailPageDMT;
 import org.testng.annotations.Test;
 
 import static com.cat.utils.SeleniumUtils.maximizeWindow;
@@ -23,8 +26,9 @@ public class DMTSmokeTest extends BaseTestDMT {
                 .loginToApplication(getConfig().usernameDMT(), getConfig().passwordDMT())
                 .clickOnSwitchDealerDropdown()
                 .verifyDealersListFromSwitchDealerDropdownMenu()
-                .clickOnDealerByName("Cresco")
+                .clickOnDealerByName("Cresco");
 
+        LeftNavMenuComponentsDMT leftNavMenuComponentsDMT = new LeftNavMenuComponentsDMT()
                 .clickOnLeftMenuByName("Messaging")
                 .clickOnLeftMenuByName("Resources")
                 .clickOnLeftMenuByName("FORMS")
@@ -47,8 +51,26 @@ public class DMTSmokeTest extends BaseTestDMT {
         waitForGivenTime(6);
     }
 
+    //before running this test new Account should be created in AEM
     @Test (groups = {"smoke", "DMT"})
     public void dmtSmokeTest2_RequestsRegistration() {
+        HomePageDMT homePageDMT = new LoginPageDMT()
+                .acceptCookies()
+                .loginToApplication(getConfig().usernameDMT(), getConfig().passwordDMT())
+                .clickOnDealerByName("Empire");
 
+        LeftNavMenuComponentsDMT leftNavMenuComponentsDMT = new LeftNavMenuComponentsDMT();
+                leftNavMenuComponentsDMT
+                .clickOnRequestsSubMenu("Registration");
+        RequestsRegistrationPageDMT requestsRegistrationPageDMT = new RequestsRegistrationPageDMT()
+                //.verifyLastRequestStatus("Requested")
+                .clickOnLastRequest()
+                //.clickOnLockRequest()
+                .verifyStatus("Registration Request Received")
+                .verifyLockedBy()
+                .clickOnBackToList();
+
+
+        waitForGivenTime(10);
     }
 }

@@ -1,7 +1,7 @@
-package com.cat.pages.web.aem.homePage.browseEquipmentPage;
+package com.cat.pages.web.aem.homePage.browseEquipment;
 
 import com.cat.enums.WaitType;
-import com.cat.pages.web.aem.homePage.searchListEquipmentResultPage.SearchListEquipmentsResultPageAEM;
+import com.cat.pages.web.aem.homePage.searchListEquipmentResult.SearchListEquipmentsResultPageAEM;
 import org.openqa.selenium.By;
 
 import static com.cat.utils.SeleniumUtils.click;

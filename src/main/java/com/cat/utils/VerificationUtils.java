@@ -12,7 +12,7 @@ public class VerificationUtils {
     }
 
     public static void contains(String str1, String str2) {
-        Assert.assertTrue(str1.toUpperCase().contains(str2.toUpperCase()), str1 + " string does not contain " + str2 + "!");
+        Assert.assertTrue(str1.toUpperCase().contains(str2.toUpperCase()), str1 + " does not contain " + str2 + "!");
     }
     public static void isListInAlphabeticalOrder(List<String> list) {
         for (int i=0; i<list.size()-1;i++) {

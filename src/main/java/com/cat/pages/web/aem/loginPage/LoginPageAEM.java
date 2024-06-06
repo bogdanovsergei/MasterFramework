@@ -1,6 +1,7 @@
 package com.cat.pages.web.aem.loginPage;
 
 import com.cat.enums.WaitType;
+import com.cat.pages.web.aem.homePage.HomePageAEM;
 import org.openqa.selenium.By;
 
 import static com.cat.utils.SeleniumUtils.*;
@@ -27,16 +28,11 @@ public class LoginPageAEM {
         click(BTN_NEXT, WaitType.CLICKABLE);
     }
 
-    public void loginToApplication(String username, String password) {
+    public HomePageAEM loginToApplication(String username, String password) {
         setUsername(username).clickNext();
         setPassword(password).clickNext();
+        waitUntilTitleIs("Rentals");
+        return new HomePageAEM();
     }
 
-    /*
-    public WebElement getTxtBoxUserame(){
-        return getElement(TXTBOX_USERNAME);
-    }
-    public WebElement getTxtBoxPassword(){
-        return getElement(TXTBOX_PASSWORD);
-    }*/
 }

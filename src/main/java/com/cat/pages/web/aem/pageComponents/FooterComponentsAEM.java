@@ -2,7 +2,7 @@ package com.cat.pages.web.aem.pageComponents;
 
 import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
-import com.cat.pages.web.aem.homePage.browseEquipmentPage.BrowseEquipmentPageAEM;
+import com.cat.pages.web.aem.homePage.browseEquipment.BrowseEquipmentPageAEM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;

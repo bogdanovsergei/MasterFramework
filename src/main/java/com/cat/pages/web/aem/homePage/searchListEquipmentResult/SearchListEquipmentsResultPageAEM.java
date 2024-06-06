@@ -1,6 +1,6 @@
-package com.cat.pages.web.aem.homePage.searchListEquipmentResultPage;
+package com.cat.pages.web.aem.homePage.searchListEquipmentResult;
 
-import com.cat.pages.web.aem.homePage.addToRequestModalPage.AddToRequestModalPageAEM;
+import com.cat.pages.web.aem.homePage.addToRequestModal.AddToRequestModalPageAEM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

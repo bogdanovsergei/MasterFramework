@@ -1,4 +1,4 @@
-package com.cat.pages.web.aem.homePage.aerialEquipmentPage.boomLifts;
+package com.cat.pages.web.aem.homePage.aerialEquipment.boomLifts;
 
 import com.cat.enums.WaitType;
 import org.openqa.selenium.By;

@@ -1,8 +1,10 @@
 package com.cat.utils;
 
 import com.cat.config.factory.ConfigFactory;
+import com.cat.driver.Driver;
 import com.cat.driver.DriverManager;
 import com.cat.driver.manager.web.local.EdgeManager;
+import com.cat.enums.PlatformType;
 import com.cat.enums.WaitType;
 import com.google.common.util.concurrent.Uninterruptibles;
 import org.openqa.selenium.By;
@@ -40,9 +42,24 @@ public class SeleniumUtils {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
+    public static List<WebElement> waitUntilAllElementsAreVisible(By by) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+    }
+
+    public static List<WebElement> waitUntilAllElementsArePresent(By by) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+    }
+
     public static void waitUntilTitleIs(String title) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
         wait.until(ExpectedConditions.titleIs(title));
+    }
+
+    public static void waitUntilElementTextEqualsToDesiredValue(By by, String expectedText) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        wait.until(ExpectedConditions.textToBe(by, expectedText));
     }
 
     public static void waitUntilTitleContains(String title) {
@@ -100,6 +117,7 @@ public class SeleniumUtils {
     }
 
     public static List<WebElement> getListOfWebElements(By by) {
+        waitUntilAllElementsArePresent(by);
         return DriverManager.getDriver().findElements(by);
     }
 
@@ -121,5 +139,20 @@ public class SeleniumUtils {
 
     public static void refreshPage() {
         DriverManager.getDriver().navigate().refresh();
+    }
+
+    public static void closeExistingDriverAndInitiateNewWebDriver() {
+        Driver.quitDriver();
+        Driver.initDriver(PlatformType.WEB);
+    }
+
+    public static void getToDMT() {
+        DriverManager.getDriver().get(ConfigFactory.getConfig().urlDMT());
+        maximizeWindow();
+    }
+
+    public static void getToAEM() {
+        DriverManager.getDriver().get(ConfigFactory.getConfig().urlAEM());
+        maximizeWindow();
     }
 }

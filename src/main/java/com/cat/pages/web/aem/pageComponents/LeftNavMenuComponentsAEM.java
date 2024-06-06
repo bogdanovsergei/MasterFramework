@@ -2,7 +2,8 @@ package com.cat.pages.web.aem.pageComponents;
 
 import com.cat.driver.DriverManager;
 import com.cat.enums.WaitType;
-import com.cat.pages.web.aem.homePage.aerialEquipmentPage.AerialEquipmentPageAEM;
+import com.cat.pages.web.aem.homePage.aerialEquipment.AerialEquipmentPageAEM;
+import com.cat.pages.web.aem.homePage.quickQuote.QuickQuotePageAEM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -55,10 +56,10 @@ public class LeftNavMenuComponentsAEM {
         return this;
     }
 
-    public LeftNavMenuComponentsAEM clickOnQuickQuote() {
+    public QuickQuotePageAEM clickOnQuickQuote() {
         click(QUICK_QUOTE_MENU, WaitType.CLICKABLE);
         contains(getElementText(HEADER),getElementText(QUICK_QUOTE_MENU));
-        return this;
+        return new QuickQuotePageAEM();
     }
 
     public LeftNavMenuComponentsAEM verifyAlphabeticalOrder() {
