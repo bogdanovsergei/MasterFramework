@@ -13,10 +13,10 @@ import static com.cat.utils.VerificationUtils.*;
 
 public class HomePageDMT {
 
-    private final LeftNavMenuComponentsDMT leftNavMenuComponentsDMT;
+    //private final LeftNavMenuComponentsDMT leftNavMenuComponentsDMT;
 
     public HomePageDMT() {
-        leftNavMenuComponentsDMT = new LeftNavMenuComponentsDMT();
+        //leftNavMenuComponentsDMT = new LeftNavMenuComponentsDMT();
         //DriverManager.getDriver().get(ConfigFactory.getConfig().urlAEM());
     }
 

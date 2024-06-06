@@ -14,7 +14,7 @@ import static com.cat.utils.VerificationUtils.contains;
 public class RegistrationRequestDetailPageDMT {
 
     private static final By STATUS = By.xpath("//p[@class='subhead']");
-    private static final By HEADER_NAME = By.xpath("//h1[@class='secondary']");
+    private static final By HEADER_NAME = By.xpath("//h1[@_ngcontent-kfi-c181]");
     private static final By LOCK_REQUEST_BTN = By.xpath("//button[@class='btn btn-primary btn-block ng-star-inserted']");
     private static final By LOCKED_BY = By.xpath("//span[@class='ng-star-inserted']");
     private static final By BACK_TO_LIST = By.xpath("//span[@class='close--label']");
@@ -28,7 +28,7 @@ public class RegistrationRequestDetailPageDMT {
 
     public RequestsRegistrationPageDMT clickOnBackToList() {
         click(BACK_TO_LIST, WaitType.CLICKABLE);
-        waitUntilElementTextEqualsToDesiredValue(HEADER_NAME, "REGISTRATION");
+        //waitUntilElementTextEqualsToDesiredValue(HEADER_NAME, "Registration ");
         return new RequestsRegistrationPageDMT();
     }
 

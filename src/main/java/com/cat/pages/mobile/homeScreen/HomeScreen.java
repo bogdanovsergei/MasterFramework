@@ -18,6 +18,7 @@ import java.sql.SQLOutput;
 import static com.cat.utils.MobileUtils.*;
 //import static com.cat.utils.SeleniumUtils.click;
 import static com.cat.utils.SeleniumUtils.waitForGivenTime;
+import static com.cat.utils.SeleniumUtils.waitUntilElementTextEqualsToDesiredValue;
 import static com.cat.utils.VerificationUtils.areEqual;
 
 public class HomeScreen {
@@ -40,8 +41,9 @@ public class HomeScreen {
         return this;
     }
     public HomeScreen verifyLabelQuickActions() {
-        String labelName = getElementText(LABEL_QUICK_ACTIONS);
-        areEqual(labelName, "QUICK ACTIONS");
+        waitUntilElementTextEqualsToDesiredValue(LABEL_QUICK_ACTIONS, "QUICK ACTIONS");
+        //String labelName = getElementText(LABEL_QUICK_ACTIONS);
+        //areEqual(labelName, "QUICK ACTIONS");
         return this;
     }
 

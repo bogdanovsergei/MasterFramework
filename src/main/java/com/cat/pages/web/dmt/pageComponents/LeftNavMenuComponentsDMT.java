@@ -16,9 +16,16 @@ public class LeftNavMenuComponentsDMT {
     private static final By REQUESTS_SUBMENU_LIST = By.xpath("//a[@class='user-view']");
     private static final By HEADER_NAME = By.xpath("//h1['_ngcontent-dgn-c151']");
 
+    public static List<WebElement> leftMenuListOfElements;
+
+    public LeftNavMenuComponentsDMT() {
+        waitForGivenTime(2);
+        waitUntilAllElementsArePresent(LEFT_MENU_LIST);
+        leftMenuListOfElements = DriverManager.getDriver().findElements(LEFT_MENU_LIST);
+    }
+
     public LeftNavMenuComponentsDMT clickOnLeftMenuByName(String menuItem) {
-        waitUntilPresenceOfElementLocated(LEFT_MENU_LIST);
-        List<WebElement> leftMenuListOfElements = DriverManager.getDriver().findElements(LEFT_MENU_LIST);
+
         for (WebElement leftMenuListOfElement : leftMenuListOfElements) {
             System.out.println(leftMenuListOfElement.getText());
             if (leftMenuListOfElement.getText().toUpperCase().contains(menuItem.toUpperCase())) {
@@ -35,8 +42,8 @@ public class LeftNavMenuComponentsDMT {
     public void clickOnRequestsSubMenu(String submenuItem) {
         //waitUntilPresenceOfElementLocated(LEFT_MENU_LIST);
         //waitUntilAllElementsArePresent(LEFT_MENU_LIST);
-        waitForGivenTime(2);
-        List<WebElement> leftMenuListOfElements = waitUntilAllElementsArePresent(LEFT_MENU_LIST);
+        //waitForGivenTime(2);
+        //List<WebElement> leftMenuListOfElements = waitUntilAllElementsArePresent(LEFT_MENU_LIST);
         for (WebElement leftMenuListOfElement : leftMenuListOfElements) {
             System.out.println(leftMenuListOfElement.getText());
             if (leftMenuListOfElement.getText().toUpperCase().contains("REQUESTS")) {
