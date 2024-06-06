@@ -63,6 +63,7 @@ public class LeftNavMenuComponentsAEM {
     }
 
     public LeftNavMenuComponentsAEM verifyAlphabeticalOrder() {
+        waitUntilPresenceOfElementLocated(MENU);
         List<WebElement> menu = DriverManager.getDriver().findElements(MENU);
         List<String> menuItems = new ArrayList<>();
         for (WebElement menuItem : menu) {
