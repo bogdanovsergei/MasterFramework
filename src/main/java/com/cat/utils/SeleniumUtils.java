@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -65,6 +66,11 @@ public class SeleniumUtils {
     public static void waitUntilTitleContains(String title) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
         wait.until(ExpectedConditions.titleContains(title));
+    }
+
+    public static void waitUntilTextOfElementIsNotEmpty(By by) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(ConfigFactory.getConfig().timeout()));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(by,"")));
     }
 
     public static void sendKeys(By by, String value) {
@@ -154,5 +160,12 @@ public class SeleniumUtils {
     public static void getToAEM() {
         DriverManager.getDriver().get(ConfigFactory.getConfig().urlAEM());
         maximizeWindow();
+    }
+
+    public static void selectFromDropdownByVisibleText(By by, String text) {
+        waitUntilPresenceOfElementLocated(by);
+        WebElement dropdownElement = DriverManager.getDriver().findElement(by);
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText(text);
     }
 }

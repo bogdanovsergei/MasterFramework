@@ -1,7 +1,9 @@
 package com.cat.pages.web.aem.pageComponents;
 
 import com.cat.enums.WaitType;
+import com.cat.pages.web.aem.homePage.account.AccountPageAEM;
 import com.cat.pages.web.aem.homePage.locations.LocationsPageAEM;
+import com.cat.pages.web.aem.homePage.rentals.RentalsPageAEM;
 import com.cat.pages.web.aem.homePage.shoppingCart.ShoppingCartPageAEM;
 import com.cat.pages.web.aem.loginPage.LoginPageAEM;
 import org.openqa.selenium.By;
@@ -17,24 +19,31 @@ public class TopMenuComponentsAEM {
     private static final By BROWSE_EQUIPMENT_BUG=By.xpath("//a[contains(text(),'Browse Equipment') and @tabindex='3']");
     private static final By ABOUT_US_MENU=By.xpath("//a[contains(text(),'About Us') and @tabindex='2' and @class='hidden-phone']");
     private static final By LOCATION_MENU=By.xpath("//li[@class='menu']//a[@class='hidden-phone' and contains(text(),'Location')]");
+    private static final By RENTALS_MENU=By.xpath("//li[@class='menu']//a[@class='hidden-phone' and contains(text(),'Rentals')]");
     private static final By BLOG_MENU=By.xpath("//li[@class='menu']//a[@class='hidden-phone' and contains(text(),'Blog')]");
+    private static final By ACCOUNT_MENU=By.xpath("//li[@class='menu']//a[@class='hidden-phone' and contains(text(),'Account')]");
     private static final By CART_ITEMS_NUMBER = By.xpath("//span[@class='cart-items-number']");
     private static final By CART_ICON = By.xpath("//a[contains(text(),'CART')]");
     private static final By SIGNIN_BTN = By.xpath("//a[@class='signin-button']");
+    private static final By ACCOUNT_ICON = By.xpath("//li[@class='menu']//i[@class='fa fa-user']");
+    private static final By MACHINES_COUNT = By.xpath("//button[@id='rental-asset-type-primary']//span[@class='rental-asset-count']");
 
     private static final By LNK_RENTALS = By.id("menu_admin_viewAdminModule");
     private static final String LNK_RENTALS_TXT = "Link: Admin";
 
-    public TopMenuComponentsAEM clickOnRentals() {
-        click(LNK_RENTALS, WaitType.CLICKABLE);
-        return this;
+    private static final By PAGE_IS_LOADED_INDICATOR = By.xpath("//body[@class='page basicpage deg crs-portal']");
+
+    public RentalsPageAEM clickOnRentals() {
+        click(RENTALS_MENU, WaitType.CLICKABLE);
+        waitUntilTextOfElementIsNotEmpty(MACHINES_COUNT);
+        return new RentalsPageAEM();
     }
 
     public TopMenuComponentsAEM clickOnBrowserEquipment() {
         try {
             click(BROWSE_EQUIPMENT_BUG, WaitType.CLICKABLE);
         } catch (Exception e){
-            click(BROWSE_EQUIPMENT_MENU, WaitType.CLICKABLE);
+           click(BROWSE_EQUIPMENT_MENU, WaitType.CLICKABLE);
         }
         //click(BROWSE_EQUIPMENT_MENU, WaitType.CLICKABLE);
         waitUntilTitleIs("Tool Rentals & Equipment Rentals Near You | The Cat Rental Store");
@@ -60,6 +69,12 @@ public class TopMenuComponentsAEM {
         return this;
     }
 
+    public AccountPageAEM clickOnAccount() {
+        click(ACCOUNT_MENU, WaitType.CLICKABLE);
+        waitUntilTitleIs("Account");
+        return new AccountPageAEM();
+    }
+
     public ShoppingCartPageAEM clickOnCartIcon() {
         click(CART_ICON, WaitType.CLICKABLE);
         return new ShoppingCartPageAEM();
@@ -79,4 +94,8 @@ public class TopMenuComponentsAEM {
         return this;
     }
 
+    public TopMenuComponentsAEM hoverToAccountIcon() {
+        hoverToElement(ACCOUNT_ICON);
+        return this;
+    }
 }

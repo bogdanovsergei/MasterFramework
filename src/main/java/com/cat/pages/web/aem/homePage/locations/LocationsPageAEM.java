@@ -10,6 +10,9 @@ import static com.cat.utils.SeleniumUtils.waitUntilPresenceOfElementLocated;
 
 public class LocationsPageAEM {
 
+    String searchItem;
+    String xpath ="//div[@id='result_" +searchItem+ "']//div[@id='details-toggle-button']";
+
     private static final By DEALER_NAME_RADIO_BTN = By.xpath("//label[@for='dealerName']");
     private static final By SEARCH_INPUT_TEXTBOX = By.xpath("//input[@id='search-input']");
     private static final By SEARCH_BTN = By.id("btnSearch");
@@ -23,6 +26,8 @@ public class LocationsPageAEM {
     private static final By FIRST_RESULT_MORE_INFO = By.xpath("//div[@id='result_1']//div[@id='details-toggle-button']");
     private static final By FIRST_RESULT_VIEW_EQUIPMENT = By.xpath("//div[@id='result_1']//a[@class='cta-details-link cta-details-fleet']");
     private static final By FIRST_RESULT_QUICK_QUOTE = By.xpath("//div[@id='result_1']//a[@class='cta-details-link cta-details-QQ']");
+    By SECOND_RESULT_MORE_INFO = By.xpath(xpath);
+
 
     public LocationsPageAEM clickOnDealerNameRadioButton() {
         click(DEALER_NAME_RADIO_BTN, WaitType.CLICKABLE);
@@ -39,15 +44,23 @@ public class LocationsPageAEM {
         return this;
     }
 
-    public TopMenuComponentsAEM clickOnViewEquipment() {
-        waitUntilPresenceOfElementLocated(FIRST_RESULT_VIEW_EQUIPMENT);
-        click(FIRST_RESULT_VIEW_EQUIPMENT, WaitType.CLICKABLE);
+    public TopMenuComponentsAEM clickOnViewEquipmentBySearchItemNumber(int itemNumber) {
+        By viewEquipment = By.xpath("//div[@id='result_" +itemNumber+ "']//a[@class='cta-details-link cta-details-fleet']");
+        waitUntilPresenceOfElementLocated(viewEquipment);
+        click(viewEquipment, WaitType.CLICKABLE);
         return new TopMenuComponentsAEM();
     }
 
     public LocationsPageAEM clickOnQuickQuote() {
         waitUntilPresenceOfElementLocated(FIRST_RESULT_QUICK_QUOTE);
         click(FIRST_RESULT_QUICK_QUOTE, WaitType.CLICKABLE);
+        return this;
+    }
+
+    public LocationsPageAEM clickOnMoreInfoBySearchItemNumber(int itemNumber) {
+        By moreInfo = By.xpath("//div[@id='result_" +itemNumber+ "']//div[@id='details-toggle-button']");
+        waitUntilPresenceOfElementLocated(moreInfo);
+        click(moreInfo, WaitType.CLICKABLE);
         return this;
     }
 

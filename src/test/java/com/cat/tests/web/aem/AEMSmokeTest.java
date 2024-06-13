@@ -1,9 +1,11 @@
 package com.cat.tests.web.aem;
 
 import com.cat.pages.web.aem.homePage.HomePageAEM;
+import com.cat.pages.web.aem.homePage.account.AccountPageAEM;
 import com.cat.pages.web.aem.homePage.aerialEquipment.AerialEquipmentPageAEM;
 import com.cat.pages.web.aem.homePage.locations.LocationsPageAEM;
 import com.cat.pages.web.aem.homePage.quickQuote.QuickQuotePageAEM;
+import com.cat.pages.web.aem.homePage.rentals.RentalsPageAEM;
 import com.cat.pages.web.aem.homePage.searchListEquipmentResult.SearchListEquipmentsResultPageAEM;
 import com.cat.pages.web.aem.pageComponents.FooterComponentsAEM;
 import com.cat.pages.web.aem.pageComponents.LeftNavMenuComponentsAEM;
@@ -22,7 +24,7 @@ import static com.cat.utils.SeleniumUtils.*;
 
 public class AEMSmokeTest extends BaseTestAEM {
 
-    @Test (groups = {"smoke", "AEM"})
+    @Test (groups = {"smoke", "AEM"}, description = "1")
     public void aemDispatcherHomeAndGlobalTest() {
         HomePageAEM homePageAEM = new HomePageAEM()
                 .acceptCookies()
@@ -73,7 +75,7 @@ public class AEMSmokeTest extends BaseTestAEM {
         waitForGivenTime(3);
     }
 
-    @Test (groups = {"smoke", "AEM"})
+    @Test (groups = {"smoke", "AEM"}, description = "2")
     public void aemDispatcherProductsTest() {
         String firstName = "Sergei",
                 lastName = "Bogdanov",
@@ -155,7 +157,7 @@ public class AEMSmokeTest extends BaseTestAEM {
         waitForGivenTime(8);
     }
 
-    @Test (groups = {"smoke", "AEM"})
+    @Test (groups = {"smoke"}, description = "3")
     public void aemDispatcherLeadsTest() {
         String firstName = "Sergei",
                 lastName = "Bogdanov",
@@ -206,7 +208,7 @@ public class AEMSmokeTest extends BaseTestAEM {
     }
 
 
-    @Test (groups = {"smoke", "AEM"})
+    @Test (groups = {"smoke", "AEM"}, description = "4")
     public void aemDispatcherLocationsTest() {
 
         HomePageAEM homePageAEM = new HomePageAEM()
@@ -223,10 +225,84 @@ public class AEMSmokeTest extends BaseTestAEM {
                 .isStatePresent()
                 .isPhonePresent()
                 .isZipPresent()
-                .clickOnMoreInfo()
-                .clickOnViewEquipment()
-                .clickOnLocation();
+                .clickOnMoreInfoBySearchItemNumber(1)
+                .clickOnViewEquipmentBySearchItemNumber(1)
+                .clickOnLocation()
+                .enterInput("Miamisburg, Ohio, US")
+                .clickOnSearchButton()
+                .clickOnMoreInfoBySearchItemNumber(1);
+
 
         waitForGivenTime(5);
+    }
+
+    @Test (groups = {"smoke", "AEM"}, description = "6")
+    public void aemDispatcherSCPAccountTest() {
+        HomePageAEM homePageAEM = new HomePageAEM()
+                .acceptCookies();
+        HomePageAEM homePageAEM2 = new TopMenuComponentsAEM()
+                .clickOnSignInButton()
+                .loginToApplication(getConfig().usernameAEM(), getConfig().passwordAEM());
+        AccountPageAEM accountPageAEM = new TopMenuComponentsAEM()
+                .clickOnAccount()
+                .verifyUsername()
+                .isChangePasswordLinkPresent()
+                .isEditProfileLinkPresent();
+        scrollByPixels(300);
+                accountPageAEM
+                .switchRentReportSettingsDaily("on")
+                .switchRentReportSettingsDaily("off")
+                .switchRentReportSettingsWeekly("on")
+                .switchRentReportSettingsWeekly("off")
+                .switchRentReportSettingsMonthly("on")
+                .switchRentReportSettingsMonthly("off")
+                .clickOnLanguageDropdown()
+                .clickOnLanguageDropdown()
+                .clickOnDateFormatDropdown()
+                .clickOnDateFormatDropdown()
+                .clickOnTimeZoneDropdown()
+                .selectTimeZoneByName("Pacific/Honolulu")
+                .clickOnTimeZoneDropdown();
+        scrollByPixels(1000);
+                accountPageAEM
+                .switchEmailNotification("on")
+                .switchEmailNotification("off")
+                .switchBrowserNotification("on")
+                .switchMobileAppNotification("on")
+                .switchMobileAppNotification("off");
+                //.downloadReport()
+                //.deleteReport();
+
+        waitForGivenTime(4);
+    }
+
+    @Test (groups = {"smoke", "AEM"}, description = "7")
+    public void aemDispatcherSCPRentalsTest() {
+        HomePageAEM homePageAEM = new HomePageAEM()
+                .acceptCookies();
+        HomePageAEM homePageAEM2 = new TopMenuComponentsAEM()
+                .clickOnSignInButton()
+                .loginToApplication(getConfig().usernameAEM(), getConfig().passwordAEM());
+        RentalsPageAEM rentalsPageAEM = new TopMenuComponentsAEM()
+                .clickOnRentals()
+                .changeMapOrListView()
+                .changeMapOrListView()
+                .scrollListToRight(300)
+                .scrollListToLeft(300)
+                .clickOnAssetsTypeAll()
+                .clickOnAssetsTypeReservation()
+                .clickOnAssetsTypeMachines()
+                .clickOnFilters()
+                .closePreferencesModalWindow()
+                .scrollListToRight(300)
+                .scrollListToLeft(300)
+                .clickOnListHeaderByName("Take Action")
+                .clickOnListHeaderByName("Asset Name")
+                .clickOnListHeaderByName("Asset Id");
+                //.clickOnCreateReportButton()
+                //.verifyReportModalWindowText()
+                //.closeReportModalWindow();
+
+        waitForGivenTime(4);
     }
 }

@@ -132,7 +132,7 @@
     </dependency>
 
   </dependencies>
-<!--
+
   <build>
     <plugins>
       <plugin>
@@ -142,16 +142,18 @@
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>src/test/resources/testng/smokeTestAEM.xml</suiteXmlFile>
+            <!--
             <suiteXmlFile>src/test/resources/testng/smokeTestDMT.xml</suiteXmlFile>
             <suiteXmlFile>src/test/resources/testng/smokeTestApi.xml</suiteXmlFile>
             <suiteXmlFile>src/test/resources/testng/smokeTestMobile.xml</suiteXmlFile>
+            -->
           </suiteXmlFiles>
         </configuration>
       </plugin>
     </plugins>
   </build>
--->
 
+<!--
   <profiles>
     <profile>
       <id>smoke-tests</id>
@@ -189,5 +191,6 @@
       </build>
     </profile>
   </profiles>
+  -->
 
 </project>
